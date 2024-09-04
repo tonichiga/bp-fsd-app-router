@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 import io, { Socket } from "socket.io-client";
-import cookie from "../lib/cookie";
-import { authApi } from "./auth";
 import { HASH } from "../const";
 
 const isClient = typeof window !== "undefined";

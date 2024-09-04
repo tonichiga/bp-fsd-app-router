@@ -1,11 +1,9 @@
-import { IUser } from "@/06.entities";
 import { axiosForPublic } from "@/07.shared/api";
 import { logger } from "@/07.shared/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 interface ILoginResponse {
   token: string;
-  user: IUser;
   tokenExpires: number;
 }
 

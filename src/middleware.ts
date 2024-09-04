@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { defaultLocale, locales } from "./07.shared/config";
+import { createDynamicMiddleware } from "@reduxjs/toolkit";
 
 const blacklist = [];
 
@@ -52,6 +53,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/data|favicon.ico|images|documents|models|scripts|videos|audio|fonts).*)",
+    "/((?!api|_next/static|_next/data|favicon.ico|images|documents|models|scripts|videos|audio|assets|fonts).*)",
   ],
 };

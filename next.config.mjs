@@ -36,20 +36,13 @@ const config = (phase) => {
       NEXT_PUBLIC_API_URL: getBaseApiUrl(),
       NEXT_PUBLIC_EXTERNAL_API_URL: getExternalApiUrl(),
     },
-    // i18n: {
-    //   locales: ["default", "uk", "ru", "en"],
-    //   defaultLocale: "default",
-    // },
+    output: "export",
     reactStrictMode: false,
     images: {
       unoptimized: true,
     },
 
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-      // Note: we provide webpack above so you should not `require` it
-      // Perform customizations to webpack config
-      // config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//));
-
       madge("src", {
         tsConfig: "./tsconfig.json",
         webpackConfig: config,

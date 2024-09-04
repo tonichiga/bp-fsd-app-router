@@ -1,8 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./street.css";
-@import "./car.css";
+
 @import "./_animations.css";
 @import "./font/roboto-condensed/roboto-condensed.css";
 @import "./font/rubik/rubik.css";
@@ -10,13 +9,8 @@
 @import "./font/racingSans/racing-sans.css";
 @import "./modal-manager.css";
 @import "./_media.css";
-@import "./slider.css";
 @import "./_variables.css";
 @import "./_scroll-bar.css";
-@import "./screens.css";
-@import "../../03.views/landing/assets/styles.css";
-@import "./refresher.css";
-@import "./preloader-pull-list.css";
 
 @layer base {
   :root {
