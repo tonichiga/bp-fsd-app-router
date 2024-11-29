@@ -1,11 +1,6 @@
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "../styles/globals.css";
-import {
-  getMessages,
-  getTranslations,
-  unstable_setRequestLocale,
-} from "next-intl/server";
-import { locales } from "@/07.shared/config";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
 
@@ -25,9 +20,9 @@ type Props = {
   params: { locale: string };
 };
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
+// export function generateStaticParams() {
+//   return locales.map((locale) => ({ locale }));
+// }
 
 // export async function generateMetadata({
 //   params: { locale },
@@ -40,7 +35,7 @@ export function generateStaticParams() {
 // }
 
 const RootLayout = async ({ children, params: { locale } }: Props) => {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const messages = await getMessages();
 

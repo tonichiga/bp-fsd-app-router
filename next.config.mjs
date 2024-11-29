@@ -36,7 +36,7 @@ const config = (phase) => {
       NEXT_PUBLIC_API_URL: getBaseApiUrl(),
       NEXT_PUBLIC_EXTERNAL_API_URL: getExternalApiUrl(),
     },
-    output: "export",
+    // output: "export",
     reactStrictMode: false,
     images: {
       unoptimized: true,
