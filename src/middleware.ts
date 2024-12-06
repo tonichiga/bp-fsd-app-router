@@ -1,7 +1,6 @@
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { defaultLocale, locales } from "./07.shared/config";
-import { createDynamicMiddleware } from "@reduxjs/toolkit";
 
 const blacklist = [];
 
@@ -17,7 +16,9 @@ export async function middleware(request: NextRequest) {
   if (pathnameIsMissingLocale) {
     const nextLocale = request.cookies.get("NEXT_LOCALE");
     if (nextLocale) {
-      if (nextLocale.value === "ua") {
+      if (!locales.includes(nextLocale.value)) {
+        locale = defaultLocale;
+      } else if (nextLocale.value === "ua") {
         locale = defaultLocale;
       } else {
         locale = nextLocale.value;
@@ -53,6 +54,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/data|favicon.ico|images|documents|models|scripts|videos|audio|assets|fonts).*)",
+    "/((?!api|_next/static|_next/data|favicon.ico|images|documents|models|scripts|videos|audio|fonts).*)",
   ],
 };
