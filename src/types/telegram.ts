@@ -259,6 +259,17 @@ export interface WebApp {
   ) => void;
   requestWriteAccess: (callback?: (access: boolean) => unknown) => void;
   requestContact: (callback?: (access: boolean) => unknown) => void;
+  disableVerticalSwipes: VoidFunction;
+  enableVerticalSwipes: VoidFunction;
+  isVerticalSwipesEnabled: boolean;
+  requestFullscreen: VoidFunction;
+  isFullscreen: boolean;
+  contentSafeAreaInsets: {
+    top: number;
+    left: number;
+    right: number;
+    bottom: number;
+  };
 }
 
 export interface Telegram {
