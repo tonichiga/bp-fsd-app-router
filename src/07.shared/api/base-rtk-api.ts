@@ -12,7 +12,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_EXTERNAL_API_URL,
   prepareHeaders: (headers) => {
     const token = cookie.getCookie("token");
-    headers.set("Authorization", `Bearer AD0ajWNIFn1Z2GfgevkTBfC5spJEnLvG`);
+    headers.set("Authorization", `Bearer ${token}`);
     return headers;
   },
 });

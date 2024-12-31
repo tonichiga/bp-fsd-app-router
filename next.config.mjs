@@ -21,9 +21,9 @@ const config = (phase) => {
     if (isProd) return "https://f1-coin-2-git-dev-cogitize-team.vercel.app/api";
   };
   const getExternalApiUrl = () => {
-    if (isDev) return "https://api.polygon.io/v2";
-    if (isStaging) return "https://api.polygon.io/v2";
-    if (isProd) return "https://api.polygon.io/v2";
+    if (isDev) return "https://api.localhost:3001/v2";
+    if (isStaging) return "https://api.localhost:3001/v2";
+    if (isProd) return "https://api.localhost:3001/v2";
   };
 
   const config = {
