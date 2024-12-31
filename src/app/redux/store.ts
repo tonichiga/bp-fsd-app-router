@@ -1,7 +1,10 @@
+import { tickerApi } from "@/07.shared/entities/tickers";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-const combines = combineReducers({});
+const combines = combineReducers({
+  [tickerApi.reducerPath]: tickerApi.reducer,
+});
 
 const rootReducer = (state, action) => {
   if (action.type === "user/logout") {
@@ -15,7 +18,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(tickerApi.middleware),
 });
 
 setupListeners(store.dispatch);

@@ -3,7 +3,6 @@ import {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_BUILD,
 } from "next/constants.js";
-import madge from "madge";
 import nextIntl from "next-intl/plugin";
 
 const withNextIntl = nextIntl("./src/07.shared/config/i18n.ts");
@@ -22,9 +21,9 @@ const config = (phase) => {
     if (isProd) return "https://f1-coin-2-git-dev-cogitize-team.vercel.app/api";
   };
   const getExternalApiUrl = () => {
-    if (isDev) return "https://q5v4lcxj-3000.euw.devtunnels.ms/api/v1";
-    if (isStaging) return "https://q5v4lcxj-3000.euw.devtunnels.ms/api/v1";
-    if (isProd) return "https://q5v4lcxj-3000.euw.devtunnels.ms/api/v1";
+    if (isDev) return "https://api.polygon.io/v2";
+    if (isStaging) return "https://api.polygon.io/v2";
+    if (isProd) return "https://api.polygon.io/v2";
   };
 
   const config = {
@@ -42,25 +41,25 @@ const config = (phase) => {
       unoptimized: true,
     },
 
-    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-      madge("src", {
-        tsConfig: "./tsconfig.json",
-        webpackConfig: config,
-        fileExtensions: ["js", "tsx", "ts"],
-        layout: "dot",
-        fontSize: "8px",
-      })
-        .then((res) => {
-          console.log("Circular dependencies: ", res.circular());
-          return res.image("./graph/dependency-graph-dot-v7.png");
-        })
-        .then((writtenImagePath) => {
-          console.log("Image written to " + writtenImagePath);
-        });
+    // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    //   madge("src", {
+    //     tsConfig: "./tsconfig.json",
+    //     webpackConfig: config,
+    //     fileExtensions: ["js", "tsx", "ts"],
+    //     layout: "dot",
+    //     fontSize: "8px",
+    //   })
+    //     .then((res) => {
+    //       console.log("Circular dependencies: ", res.circular());
+    //       return res.image("./graph/dependency-graph-dot-v7.png");
+    //     })
+    //     .then((writtenImagePath) => {
+    //       console.log("Image written to " + writtenImagePath);
+    //     });
 
-      // Important: return the modified config
-      return config;
-    },
+    //   // Important: return the modified config
+    //   return config;
+    // },
   };
 
   return withNextIntl(config);

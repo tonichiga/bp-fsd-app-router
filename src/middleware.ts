@@ -1,59 +1,9 @@
-import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
-import { defaultLocale, locales } from "./07.shared/config";
+import { routing } from "./07.shared/config";
+// import { routes } from "../protected-routes";
+import createMiddleware from "next-intl/middleware";
 
-const blacklist = [];
-
-export async function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
-  let locale = null;
-
-  // Check if there is any supported locale in the pathname
-  const pathnameIsMissingLocale = !locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
-
-  if (pathnameIsMissingLocale) {
-    const nextLocale = request.cookies.get("NEXT_LOCALE");
-    if (nextLocale) {
-      if (!locales.includes(nextLocale.value)) {
-        locale = defaultLocale;
-      } else if (nextLocale.value === "ua") {
-        locale = defaultLocale;
-      } else {
-        locale = nextLocale.value;
-      }
-    }
-
-    if (!locale) {
-      locale = defaultLocale;
-    }
-
-    const response = NextResponse.redirect(
-      new URL(
-        `/${locale}${request.nextUrl.pathname}${request.nextUrl.search}`,
-        request.url
-      )
-    );
-
-    response.cookies.set("NEXT_LOCALE", locale, {
-      path: "/",
-      maxAge: 60 * 60 * 24 * 30,
-    });
-
-    return response;
-  }
-
-  if (blacklist.includes(pathname)) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-
-  const response = NextResponse.next();
-  return response;
-}
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/data|favicon.ico|images|documents|models|scripts|videos|audio|fonts).*)",
-  ],
+  matcher: ["/((?!api|_next|_vercel\\..*).*)"],
 };

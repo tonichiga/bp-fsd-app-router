@@ -1,49 +1,66 @@
-import { Roboto, Roboto_Mono } from "next/font/google";
-import "../styles/globals.css";
-import { getMessages, setRequestLocale } from "next-intl/server";
-import { ReactNode } from "react";
+import modalList from "@/05.features/modal-manager/modal-list";
+import { locales, routing } from "@/07.shared/config";
 import { NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { Inter } from "next/font/google";
+import { notFound } from "next/navigation";
+import { ReactNode } from "react";
+import { ReduxProvider } from "../providers";
+import "../styles/globals.css";
+import { AppLayout } from "../layouts";
+import { ModalProvider } from "@4i/modal-manager";
+import ThemeProvider from "../providers/theme-provider";
+import { Toaster } from "sonner";
 
-const ROBOTO_TTF = Roboto({
+const INTER = Inter({
   weight: ["100", "300", "400", "500", "700", "900"],
-  variable: "--font-roboto",
+  variable: "--font-inter",
   subsets: ["cyrillic-ext", "latin-ext"],
 });
 
-const ROBOTO_MONO_TTF = Roboto_Mono({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  variable: "--font-roboto-mono",
-  subsets: ["cyrillic-ext", "latin-ext"],
-});
 type Props = {
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-// export function generateStaticParams() {
-//   return locales.map((locale) => ({ locale }));
-// }
+//fake
 
-// export async function generateMetadata({
-//   params: { locale },
-// }: Omit<Props, "children">) {
-//   const t = await getTranslations({ locale });
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-//   return {
-//     title: t("title"),
-//   };
-// }
+// fake
 
-const RootLayout = async ({ children, params: { locale } }: Props) => {
-  setRequestLocale(locale);
+const RootLayout = async (props: Props) => {
+  const { locale } = await props.params;
+  const { children } = props;
+
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  await setRequestLocale(locale);
 
   const messages = await getMessages();
-
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${ROBOTO_TTF.variable} ${ROBOTO_MONO_TTF.variable}`}>
+      <body className={`${INTER.variable} min-h-screen flex flex-col`}>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ReduxProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <AppLayout>{children}</AppLayout>
+            </ThemeProvider>
+            <ModalProvider
+              className="z-[10000010001000000]"
+              modalList={modalList}
+            />
+            <Toaster />
+          </ReduxProvider>
         </NextIntlClientProvider>
       </body>
     </html>
