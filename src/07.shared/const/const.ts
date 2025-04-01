@@ -1,1 +1,2 @@
-export const HASH = "";
+export { };
+

@@ -1,1 +1,1 @@
-export { mockArray } from "./array";
+export { };

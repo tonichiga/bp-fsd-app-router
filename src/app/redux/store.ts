@@ -1,13 +1,17 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-const combines = combineReducers({});
+const testReducer = (state = {}, action) => state;
+
+const combines = combineReducers({
+  test: testReducer,
+});
 
 const rootReducer = (state, action) => {
   if (action.type === "user/logout") {
     state = undefined;
   }
-  return combines(state, action as never);
+  return combines(state, action);
 };
 
 export const store = configureStore({

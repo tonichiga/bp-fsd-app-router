@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
+import createNextIntlPlugin from "next-intl/plugin";
 import {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_BUILD,
 } from "next/constants.js";
-import nextIntl from "next-intl/plugin";
 
-const withNextIntl = nextIntl("./src/07.shared/config/i18n.ts");
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const config = (phase) => {
