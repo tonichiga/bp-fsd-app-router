@@ -50,7 +50,7 @@ const RootLayout = async ({
               <AppLayout>{children}</AppLayout>
             </ThemeProvider>
             {/* dont set z-index 10000000000000! */}
-            <ModalProvider className="z-[100]" modalList={modalList} />
+            <ModalProvider className="z-100" modalList={modalList} />
             <Toaster />
           </ReduxProvider>
         </NextIntlClientProvider>

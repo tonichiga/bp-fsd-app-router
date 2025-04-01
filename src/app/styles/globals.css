@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config '../../../tailwind.config.ts';
 
-@import "./font/FiraSans/FiraSans.css";
+@import "tailwindcss";
 
-@import "./modal-manager.css";
-@import "./_media.css";
-@import "./_variables.css";
-@import "./_scroll-bar.css";
+@import "tailwindcss";
+@import "./font/FiraSans/FiraSans.css" layer(utilities);
+@import "./modal-manager.css" layer(utilities);
+@import "./_media.css" layer(utilities);
+@import "./_variables.css" layer(utilities);
+@import "./_scroll-bar.css" layer(utilities);

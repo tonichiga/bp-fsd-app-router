@@ -3,7 +3,6 @@
   height: 2.5rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply w-[0.5rem] h-rem-[2.5rem]  box-content cursor-pointer; */
 }
 
 .scroll-bar::-webkit-scrollbar-track {
@@ -12,7 +11,6 @@
   width: 1rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply bg-[transparent] rounded-[0.5rem] w-[1rem] box-content cursor-pointer; */
 }
 
 .scroll-bar::-webkit-scrollbar-thumb {
@@ -21,7 +19,6 @@
   width: 0.5rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply bg-White/50 rounded-[0.5rem] w-[0.5rem] box-content cursor-pointer; */
 }
 
 textarea::-webkit-scrollbar {
@@ -29,7 +26,6 @@ textarea::-webkit-scrollbar {
   height: 2.5rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply w-[0.5rem] h-rem-[2.5rem]  box-content cursor-pointer; */
 }
 
 textarea::-webkit-scrollbar-track {
@@ -38,7 +34,6 @@ textarea::-webkit-scrollbar-track {
   width: 1rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply bg-[transparent] rounded-[0.5rem] w-[1rem] box-content cursor-pointer; */
 }
 
 textarea::-webkit-scrollbar-thumb {
@@ -47,14 +42,12 @@ textarea::-webkit-scrollbar-thumb {
   width: 0.5rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply bg-White/50 rounded-[0.5rem] w-[0.5rem] box-content cursor-pointer; */
 }
 .scroll-bar-horizontal::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply w-[0.5rem] h-rem-[0.5rem]  box-content cursor-pointer; */
 }
 
 .scroll-bar-horizontal-slim::-webkit-scrollbar {
@@ -62,7 +55,6 @@ textarea::-webkit-scrollbar-thumb {
   height: 0.5rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply w-[0.2rem] h-rem-[0.5rem]  box-content cursor-pointer; */
 }
 
 .scroll-bar-horizontal::-webkit-scrollbar-track {
@@ -70,7 +62,6 @@ textarea::-webkit-scrollbar-thumb {
   border-radius: 0.5rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply bg-Black/100 rounded-[0.5rem] box-content cursor-pointer; */
 }
 
 .scroll-bar-horizontal::-webkit-scrollbar-thumb {
@@ -79,5 +70,4 @@ textarea::-webkit-scrollbar-thumb {
   width: 0.25rem;
   box-sizing: content-box;
   cursor: pointer;
-  /* @apply bg-White/50 rounded-[0.5rem] w-[0.2.5rem] box-content cursor-pointer; */
 }
