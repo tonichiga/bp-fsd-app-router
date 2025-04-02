@@ -1,5 +1,5 @@
 import socket from "@/07.shared/api/socket";
-import { useValidateHash } from "@/07.shared/lib/hooks";
+import { useValidateHash } from "@/07.shared/hooks";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
