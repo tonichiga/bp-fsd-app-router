@@ -20,6 +20,10 @@
   --breakpoint-max-mobile: 767px;
   --breakpoint-max-tablet: 1279px;
   --breakpoint-max-laptop: 1919px;
+
+  --screens-hover: {
+    raw: "(hover: hover)";
+  }
 }
 
 :root {
