@@ -1,4 +1,4 @@
-import modalList from "@/05.features/modal-manager/modal-list";
+import { modalList } from "@/05.features/modal-manager";
 import { locales, routing } from "@/i18n";
 import { ModalProvider } from "@4i/modal-manager";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -6,8 +6,7 @@ import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Toaster } from "sonner";
 import { AppLayout } from "../layouts";
-import { ReduxProvider } from "../providers";
-import ThemeProvider from "../providers/theme-provider";
+import { ReduxProvider, ThemeProvider } from "../providers";
 import "../styles/globals.css";
 
 const INTER = Inter({

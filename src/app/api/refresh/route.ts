@@ -1,13 +1,13 @@
-import { axiosForPublic } from "@/07.shared/api";
+import { axiosForPublic } from "@/07.shared/lib/axios";
 import { logger } from "@/07.shared/utils";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 interface ILoginResponse {
   token: string;
   tokenExpires: number;
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const clientIP = req.headers["x-real-ip"];
   const { hash } = await req.json();
 

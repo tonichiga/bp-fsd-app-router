@@ -1,9 +1,9 @@
-import { baseQuery } from "@/07.shared/lib";
 import {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query";
+import { baseQuery } from "./base-rtk-api";
 
 const privateBaseQuery: BaseQueryFn<
   string | FetchArgs,
