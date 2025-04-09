@@ -2,6 +2,7 @@
   "extends": ["next/core-web-vitals", "next/typescript"],
   "plugins": ["import"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
     "import/no-internal-modules": [
       "error",
       {
