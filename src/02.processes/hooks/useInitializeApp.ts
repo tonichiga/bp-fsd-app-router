@@ -1,8 +1,8 @@
-import { socket } from "@/07.shared/lib";
 import { useValidateHash } from "@/07.shared/hooks";
 import { useEffect, useState } from "react";
 import cookie from "@/07.shared/lib/cookie";
 import { setupPrivateInterceptors } from "@/07.shared/lib/axios";
+import { socket } from "@/07.shared/lib/socket";
 
 const useInitializeApp = () => {
   // const { data: player } = useGetPlayerQuery();
