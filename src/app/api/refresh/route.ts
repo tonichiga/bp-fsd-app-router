@@ -1,5 +1,4 @@
 import { axiosForPublic } from "@/07.shared/lib/axios";
-import { logger } from "@/07.shared/utils";
 import { NextRequest } from "next/server";
 
 interface ILoginResponse {
@@ -17,7 +16,6 @@ export async function POST(req: NextRequest) {
       { hash },
       {
         headers: {
-          "Content-Type": "application/json",
           "x-client-real-ip": clientIP,
         },
       }
@@ -29,14 +27,17 @@ export async function POST(req: NextRequest) {
       status: response.status,
     });
 
+    const expiresDate = new Date(
+      Date.now() + data.tokenExpires * 1000
+    ).toUTCString();
+
     res.headers.set(
       "Set-Cookie",
-      `token=${data.token}; Max-Age=${data.tokenExpires}; Path=/; SameSite=Strict`
+      `token=${data.token}; Path=/; Expires=${expiresDate}; SameSite=strict`
     );
 
     return res;
   } catch (error) {
-    logger("Hash validate error", error);
     return new Response(JSON.stringify(error), {
       status: 500,
       statusText: "Internal Next Error",
