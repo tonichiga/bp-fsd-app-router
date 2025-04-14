@@ -17,7 +17,9 @@
           "next-intl/server",
           "next-intl/navigation",
           "next/font/google",
-          "/styles/globals.css"
+          "/styles/globals.css",
+          "next-intl/plugin",
+          "next/constants.js"
         ]
       }
     ]
