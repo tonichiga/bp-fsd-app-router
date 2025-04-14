@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-const testReducer = (state = {}, action) => state;
+const testReducer = (state = {}) => state;
 
 const combines = combineReducers({
   test: testReducer,

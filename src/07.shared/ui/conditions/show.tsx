@@ -1,45 +1,28 @@
-import { motion } from "framer-motion";
-import { Children } from "react";
+import { baseQuery } from "@/07.shared/lib";
+import {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+} from "@reduxjs/toolkit/query";
 
-interface IShowProps {
-  children: React.ReactNode;
-  className?: string;
-}
+const privateBaseQuery: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
+  const result = await baseQuery(args, api, extraOptions);
 
-const Show = ({ children, className }: IShowProps) => {
-  let whenComponent = null;
-  let elseComponents = null;
-
-  Children.forEach(children, (child: any) => {
-    if (child.props.isTrue === undefined) {
-      elseComponents = child;
-    } else if (!whenComponent && child.props.isTrue) {
-      whenComponent = child;
-    }
-  });
-  return (
-    <motion.div
-      className={className}
-      initial={{
-        opacity: 0.3,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      transition={{
-        opacity: {
-          duration: 500,
-          opacity: 1,
-        },
-      }}
-      key={(!!whenComponent).toString()}
-    >
-      {whenComponent || elseComponents}
-    </motion.div>
-  );
+  if (result.error && result.error.status === 401) {
+    /* Custom login for refresh */
+    // const hash = window.Telegram.WebApp.initData || HASH;
+    // const token = await authApi.refresh(hash);
+    // if (token) {
+    //   result = await baseQuery(args, api, extraOptions);
+    // } else {
+    //   api.dispatch(userOperations.logout());
+    // }
+  }
+  return result;
 };
 
-Show.When = ({ isTrue, children }) => isTrue && children;
-Show.Else = ({ children }) => children;
-
-export default Show;
+export { privateBaseQuery, baseQuery };

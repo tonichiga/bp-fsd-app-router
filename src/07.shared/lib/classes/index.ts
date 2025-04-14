@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
+import { ClassNameValue } from "tailwind-merge";
 
-const classes = (...args: any[]) => {
-  // return args.join(" ");
+const classes = (...args: ClassNameValue[]) => {
   return twMerge(...args);
 };
 

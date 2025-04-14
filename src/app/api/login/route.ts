@@ -1,23 +1,23 @@
-import { axiosForPublic } from "@/07.shared/api";
+import { axiosForPublic } from "@/07.shared/lib/axios";
 import { logger } from "@/07.shared/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 interface ILoginResponse {
   token: string;
+  refreshToken: string;
   tokenExpires: number;
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const clientIP = req.headers["x-real-ip"];
-  const { hash } = await req.json();
+  const { email, password, rememberMe } = await req.json();
 
   try {
     const response = await axiosForPublic.post(
       "/auth/login",
-      { hash },
+      { email, password },
       {
         headers: {
-          "Content-Type": "application/json",
           "x-client-real-ip": clientIP,
         },
       }
@@ -25,14 +25,25 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const data = response.data as ILoginResponse;
 
-    const res = new Response(JSON.stringify(response.data), {
+    const res = new NextResponse(JSON.stringify(response.data), {
       status: response.status,
     });
 
-    res.headers.set(
-      "Set-Cookie",
-      `token=${data.token}; Max-Age=${data.tokenExpires}; Path=/; SameSite=Strict`
-    );
+    const tokenExpires = Math.floor(data.tokenExpires);
+    const day = 60 * 60 * 24;
+
+    res.cookies.set("token", data.token, {
+      path: "/",
+      sameSite: "strict",
+      expires: new Date(Date.now() + (rememberMe ? tokenExpires : day) * 1000),
+    });
+
+    res.cookies.set("refreshToken", data.refreshToken, {
+      path: "/",
+      sameSite: "strict",
+      httpOnly: true,
+      expires: new Date(Date.now() + (rememberMe ? tokenExpires : day) * 1000),
+    });
 
     return res;
   } catch (error) {

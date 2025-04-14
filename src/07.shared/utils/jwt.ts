@@ -11,7 +11,7 @@ export function parseJwt(token: string): TokenGeneric | null {
   if (!token) return null;
   try {
     return JSON.parse(Buffer.from(token.split(".")[1], "base64").toString());
-  } catch (e) {
+  } catch {
     console.log("[Middleware] parseJwt", "Parse token fail");
     return null;
   }

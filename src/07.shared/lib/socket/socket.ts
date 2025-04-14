@@ -5,7 +5,7 @@ const isClient = typeof window !== "undefined";
 
 class WebSocket {
   instance: Socket;
-  registeredEvents: { [key: string]: (...args: any[]) => void };
+  registeredEvents: { [key: string]: (...args: unknown[]) => void };
   token: string;
   callback: (status: boolean) => void;
 
@@ -65,16 +65,14 @@ class WebSocket {
       console.log("Disconnected...", reason);
 
       if (reason === "invalidToken") {
-        try {
-          const hash = window.Telegram?.WebApp?.initData;
-          if (!hash) {
-            console.warn("Socket connect failed. No token found");
-            return;
-          }
-          // console.log("Reconnecting HASH", hash);
-          this.instance.auth = (cb) => cb({ hash });
-          this.instance.disconnect().connect();
-        } catch (error) {}
+        const hash = window.Telegram?.WebApp?.initData;
+        if (!hash) {
+          console.warn("Socket connect failed. No token found");
+          return;
+        }
+        // console.log("Reconnecting HASH", hash);
+        this.instance.auth = (cb) => cb({ hash });
+        this.instance.disconnect().connect();
       }
     });
   }

@@ -12,7 +12,11 @@ const useValidateHash = () => {
 
   useEffect(() => {
     const validateHash = async () => {
-      const payload = {} as any;
+      const payload = {
+        hash: undefined,
+        isPremium: false,
+        referral: undefined,
+      };
 
       try {
         window.Telegram.WebApp.ready();

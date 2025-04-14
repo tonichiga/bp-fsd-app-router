@@ -1,13 +1,13 @@
-import socket from "@/07.shared/api/socket";
 import { useValidateHash } from "@/07.shared/hooks";
-import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import cookie from "@/07.shared/lib/cookie";
+import { setupPrivateInterceptors } from "@/07.shared/lib/axios";
+import { socket } from "@/07.shared/lib/socket";
 
 const useInitializeApp = () => {
   // const { data: player } = useGetPlayerQuery();
   const [isAppLoaded, setIsAppLoaded] = useState(false);
   const isHashValid = useValidateHash();
-  const t = useTranslations("game");
 
   useEffect(() => {
     const getAsyncData = async () => {
@@ -23,6 +23,19 @@ const useInitializeApp = () => {
     window.Telegram.WebApp.setBackgroundColor("#1f1f1f");
 
     getAsyncData();
+
+    setupPrivateInterceptors({
+      getToken: () => cookie.getCookie("token"),
+      onRefresh: async () => {
+        // const hash = window.Telegram.WebApp.initData || "DEFAULT_HASH";
+        // const token = await authApi.refresh(hash);
+        // if (token) {
+        // cookie.setCookie("token", token); // если нужно обновить
+        // }
+        // return token;
+      },
+    });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
