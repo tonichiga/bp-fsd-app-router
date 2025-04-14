@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@4i/modal-manager": "^1.1.10",
+    "@radix-ui/react-slot": "^1.2.0",
     "@reduxjs/toolkit": "^2.2.6",
     "axios": "^1.7.2",
     "class-transformer": "^0.5.1",
