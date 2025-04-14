@@ -6,6 +6,7 @@ const Home = () => {
       <div className="text-mint-500  tablet:text-red-500 w-full grid place-items-center  font-bold font-Fira">
         HELLO WORLD
       </div>
+
       <ThemeChanger />
     </div>
   );

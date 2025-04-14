@@ -20,11 +20,16 @@
   --breakpoint-max-mobile: 767px;
   --breakpoint-max-tablet: 1279px;
   --breakpoint-max-laptop: 1919px;
-
+  --color-primary: red; /* color for light */
   --screens-hover: {
     raw: "(hover: hover)";
   }
 }
 
+.dark {
+  --color-primary: yellow; /* color for dark */
+}
+
 :root {
+  /* for variables  not use tailwind classes */
 }
