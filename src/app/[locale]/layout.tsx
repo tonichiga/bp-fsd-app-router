@@ -1,6 +1,4 @@
-import { modalList } from "@/05.features/modal-manager";
 import { locales, routing } from "@/i18n";
-import { ModalProvider } from "@4i/modal-manager";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -49,7 +47,6 @@ const RootLayout = async ({
               <AppLayout>{children}</AppLayout>
             </ThemeProvider>
             {/* dont set z-index 10000000000000! */}
-            <ModalProvider className="z-100" modalList={modalList} />
             <Toaster />
           </ReduxProvider>
         </NextIntlClientProvider>
